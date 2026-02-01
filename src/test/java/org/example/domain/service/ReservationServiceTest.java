@@ -96,7 +96,7 @@ class ReservationServiceTest {
                 .thenAnswer(inv -> inv.getArgument(0));
 
         // when
-        Reservation result =
+        var result =
                 reservationService.reserve(carType, dateRange);
 
         // then
@@ -115,13 +115,13 @@ class ReservationServiceTest {
         when(carRepository.findAllCarsByCarType(carType))
                 .thenReturn(List.of(car));
 
-        DateRange otherRange =
+        var otherRange =
                 new DateRange(
                         LocalDate.now().plusDays(6),
                         LocalDate.now().plusDays(7)
                 );
 
-        Reservation oldReservation =
+        var oldReservation =
                 mockReservation(car, otherRange);
 
         when(reservationRepository.findAllReservationsByCarType(carType))
